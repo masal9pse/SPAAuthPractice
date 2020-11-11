@@ -1,38 +1,65 @@
+const environment = process.env.NODE_ENV || 'development';
+
 export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
+  mode: 'universal',
+  /*
+  ** Headers of the page
+  */
   head: {
-    title: 'frontend',
+    title: process.env.npm_package_name || '',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: ''}
+      {hid: 'description', name: 'description', content: process.env.npm_package_description || ''}
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
   },
-
-  // Global CSS (https://go.nuxtjs.dev/config-css)
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: {color: '#fff'},
+  /*
+  ** Global CSS
+  */
   css: [
   ],
-
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
+  /*
+  ** Plugins to load before mounting the App
+  */
   plugins: [
   ],
-
-  // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
-
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
+  /*
+  ** Nuxt.js dev-modules
+  */
   buildModules: [
   ],
-
-  // Modules (https://go.nuxtjs.dev/config-modules)
+  /*
+  ** Nuxt.js modules
+  */
   modules: [
+    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
-
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
+  proxy: {
+    '/api': (environment === 'development') ? 'http://localhost:8000' : 'https://api.example.com'
+  },
+  /*
+  ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
+  */
+  axios: {
+  },
+  /*
+  ** Build configuration
+  */
   build: {
+    /*
+    ** You can extend webpack config here
+    */
+    extend(config, ctx) {
+    }
   }
 }
