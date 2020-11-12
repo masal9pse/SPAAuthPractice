@@ -13,10 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
-Route::get('/', function () {
-    return 'helloworld';
+//Route::get('/', function () {
+//    return 'helloworld';
+//});
+
+Route::group(["middleware" => "api"], function () {
+    Route::post('/login', 'Auth\LoginController@login');
+    Route::get('/current_admin_user', function () {
+        return Auth::user();
+    });
 });
