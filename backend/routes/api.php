@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,6 +23,9 @@ Route::get('/', function () {
 
 Route::group(["middleware" => "api"], function () {
     Route::post('/login', 'Auth\LoginController@login');
+    Route::post('/logout', function () {
+        return Auth::logout();
+    });
     Route::get('/current_admin_user', function () {
         return Auth::user();
     });
