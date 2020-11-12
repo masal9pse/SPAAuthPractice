@@ -24,9 +24,13 @@ Route::get('/', function () {
 Route::group(["middleware" => "api"], function () {
     Route::post('/login', 'Auth\LoginController@login');
     Route::post('/logout', function () {
-        return Auth::logout();
+        //if (abort(200)) {
+        return ['ok', Auth::logout()];
+        //}
+        //abort(403);
     });
     Route::get('/current_admin_user', function () {
-        return Auth::user();
+        //return Auth::user();
+        return Auth::id();
     });
 });
