@@ -3,6 +3,7 @@
     <div>
       <Logo />
       <h1 class="title">{{ data }}</h1>
+      <button @click="$router.push('/admin/logout')">ログアウトページへ</button>
       <div class="links">
         <a
           href="https://nuxtjs.org/"

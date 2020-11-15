@@ -32,4 +32,5 @@ Route::group(["middleware" => "api"], function () {
 //追加
 Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+    Route::apiResource('admin_users', 'Api\AdminUserController')->except(['show']);
 });
