@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+//追加
+use Illuminate\Support\Facades\Hash;
 use App\AdminUser;
 
 class AdminUserController extends Controller
@@ -15,6 +17,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
+        //追加
         return AdminUser::all();
     }
 
@@ -26,18 +29,13 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        //追加
+        $admin_user = new AdminUser;
+        $admin_user->fill(array_merge(
+            $request->all(),
+            ['password' => Hash::make($request->password)]
+        ))->save();
+        return $admin_user;
     }
 
     /**
@@ -49,7 +47,13 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //array_merge(array):array => 引数の配列を結合する
+        //追加
+        $admin_user = AdminUser::find($id);
+        $admin_user->fill(array_merge(
+            $request->all(),
+            ['password' => Hash::make($request->password)]
+        ))->save();
+        return $admin_user;
     }
 
     /**
@@ -60,6 +64,9 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //追加
+        $admin_user = AdminUser::find($id);
+        $admin_user->delete();
+        return $admin_user;
     }
 }
