@@ -8,6 +8,7 @@
 
 <script>
 export default {
-  middleware: "not_logined_admin_user"
+  middleware: "not_logined_admin_user",
+  layout: "admin"
 };
 </script>
