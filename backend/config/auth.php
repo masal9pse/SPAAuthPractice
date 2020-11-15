@@ -1,4 +1,5 @@
 <?php
+
 return [
 
     /*
@@ -14,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'api',
-        'passwords' => 'users',
+        'passwords' => 'admin_users',
     ],
 
     /*
@@ -42,7 +43,7 @@ return [
 
         'api' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admin_users',
         ],
 
         // 'api' => [
@@ -74,9 +75,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-        'users' => [
+        'admin_users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\AdminUser::class,
         ],
 
         // 'users' => [
@@ -107,8 +108,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'users' => [
-            'provider' => 'users',
+        'admin_users' => [
+            'provider' => 'admin_users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
