@@ -52,4 +52,13 @@ class LoginController extends Controller
     {
         return $user;
     }
+
+    protected function loggedOut(Request $request)
+    {
+        // セッションを再生成する
+        //$request->session()->regenerate();
+        setcookie('laravel_session', "", time() - 100000000);
+
+        return ['ログアウト' => 'ok'];
+    }
 }

@@ -24,10 +24,12 @@ Route::get('/', function () {
 Route::group(["middleware" => "api"], function () {
     Route::post('/register', 'Auth\RegisterController@register')->name('register');
     Route::post('/login', 'Auth\LoginController@login');
-    Route::post('/logout', function () {
-        return Auth::logout();
-    });
     Route::get('/current_admin_user', function () {
         return Auth::user();
     });
+});
+
+//追加
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 });

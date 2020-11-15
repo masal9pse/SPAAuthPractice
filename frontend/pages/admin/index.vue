@@ -1,6 +1,8 @@
 <template>
   <section>
     <h1>管理画面へようこそ</h1>
+    <!--  thisがいらない -->
+    <button @click="$router.push('/admin/logout')">ログアウトページへ</button>
   </section>
 </template>
 

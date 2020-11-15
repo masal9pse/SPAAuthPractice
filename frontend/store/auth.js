@@ -21,6 +21,6 @@ export const actions = {
       .catch(err => {
         console.log(err)
       })
-    commit('setAdminUser', response)
+    commit('setAdminUser', null)
   },
 }
