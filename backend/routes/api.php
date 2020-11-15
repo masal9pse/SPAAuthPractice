@@ -25,13 +25,9 @@ Route::group(["middleware" => "api"], function () {
     Route::post('/register', 'Auth\RegisterController@register')->name('register');
     Route::post('/login', 'Auth\LoginController@login');
     Route::post('/logout', function () {
-        //if (abort(200)) {
-        return ['ok', Auth::logout()];
-        //}
-        //abort(403);
+        return Auth::logout();
     });
     Route::get('/current_admin_user', function () {
-        //return Auth::user();
-        return Auth::id();
+        return Auth::user();
     });
 });
