@@ -28,8 +28,9 @@ export default {
   components: {
     Logo
   },
+  // サーバー側のデフォルトの/apiを省略している？
   async asyncData(app) {
-    const data = await app.$axios.$get("/api");
+    const data = await app.$axios.$get("/");
     return {
       data
     };
