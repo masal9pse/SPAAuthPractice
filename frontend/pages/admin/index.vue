@@ -14,7 +14,12 @@
         sort-by="id"
         :sort-desc="true"
         class="elevation-1"
-      ></v-data-table>
+      >
+        <!-- 追加 -->
+        <template v-slot:item.edit-action="{ item }">
+          <v-icon small @click="onClickEditIcon(item)">mdi-pencil</v-icon>
+        </template>
+      </v-data-table>
     </v-card>
   </v-layout>
 </template>
@@ -29,6 +34,10 @@ export default {
   },
   data() {
     return {
+      //追加
+      dialogAdminUser: {},
+      //追加
+      isShowDialog: false,
       searchText: ""
     };
   },
@@ -44,6 +53,13 @@ export default {
         { text: "", value: "edit-action" },
         { text: "", value: "delete-action" }
       ];
+    }
+  },
+  //追加
+  methods: {
+    onClickEditIcon(adminUser) {
+      this.dialogAdminUser = Object.assign({}, adminUser);
+      this.isShowDialog = true;
     }
   }
 };
